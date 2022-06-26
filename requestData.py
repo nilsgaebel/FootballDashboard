@@ -7,7 +7,8 @@ print('Status response of the request: ', r.status_code)
 
 json = json.loads(r.text)
 for t in json['matches']:
-    print(t['homeTeam'])  
+    print(t['homeTeam'])
+    i = 5
     
 print("DONE")
 
