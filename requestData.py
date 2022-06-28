@@ -1,19 +1,20 @@
 import requests
 import json
-headers = {'X-Auth-Token': 'Token'}
-r = requests.get("https://api.football-data.org/v4/competitions/CL/teams",headers=headers)
+headers = {'X-Auth-Token': 'TOKEN'}
 
-print('Status response of the request: ', r.status_code)
+r1 = requests.get("https://api.football-data.org/v4/competitions/CL/teams",headers=headers)
+print('Status response of the request: ', r1.status_code)
 
-json = json.loads(r.text)
+df_1 = json.loads(r1.text)
 team_names = []
-for t in json['teams']:
+for t in df_1['teams']:
      team_names.append(t['name'])
-
 print("team names in UCL: ", team_names)
 
-r2 = requests.get("https://api.football-data.org/v4/matches",headers=headers)
-
+r2 = requests.get("https://api.football-data.org/v4/matches/327117",headers=headers)
 print('Status response of the request: ', r2.status_code)
-test = r2.text
-json_2 = json.loads(test)
+
+df_2 = json.loads(r2.text)
+homeTeam = df_2['homeTeam']
+awayTeam = df_2['awayTeam']
+print(homeTeam['name'], 'against', awayTeam['name'])
